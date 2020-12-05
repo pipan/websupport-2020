@@ -108,6 +108,10 @@ input:focus {
     flex-direction: column;
 }
 
+.flexbox--wrap {
+    flex-wrap: wrap;
+}
+
 .align--center {
     justify-content: center;
 }
@@ -193,7 +197,7 @@ a.btn {
 }
 
 .form__label {
-    width: 160px;
+    width: 140px;
 }
 
 .form__input {

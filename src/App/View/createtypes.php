@@ -3,7 +3,7 @@
         <h2 class="flex">Select Type</h2>
     </div>
     <div class="card top-m">
-        <div class="flexbox">
+        <div class="flexbox flexbox--wrap">
             <?php foreach ($data['types'] as $type): ?>
                 <a class="btn btn--secondary" href="/create?type=<?= $type ?>"><?= $type ?></a>
             <?php endforeach; ?>
