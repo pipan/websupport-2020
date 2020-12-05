@@ -25,6 +25,7 @@ class Application
 
     public function run()
     {
+        session_start();
         $request = Request::fromClient();
         $response = $this->handleRequest($request);
         $this->handleResponse($response);

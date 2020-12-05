@@ -3,6 +3,9 @@
     --bg-level-2: #282828;
     --color: #f4f4f4;
     --primary: #1effbc;
+    --success: #538436;
+    --error: #8c3131;
+    --note-color: #9a9a9a;
 
     --radius: 6px;
     
@@ -26,9 +29,28 @@ body {
     font-family: "Arial";
 }
 
+h1, h2 {
+    margin: 0px;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--bg-level-1);
+    border: 1px solid var(--color);
+    padding: var(--unit-s) var(--unit-m);
+    border-radius: var(--radius);
+    color: var(--color);
+}
+
+input:focus {
+    border-color: var(--primary);
+}
+
 .container {
-    max-width: 600px;
+    max-width: none;
     margin: auto;
+    padding: var(--unit-m) var(--unit-s);
 }
 
 .left-s {
@@ -47,8 +69,16 @@ body {
     margin-right: var(--unit-m);
 }
 
+.top-s {
+    margin-top: var(--unit-s);
+}
+
 .top-m {
     margin-top: var(--unit-m);
+}
+
+.top-l {
+    margin-top: var(--unit-l);
 }
 
 .list {
@@ -56,8 +86,18 @@ body {
     flex-direction: column;
 }
 
+.card {
+    background-color: var(--bg-level-2);
+    padding: var(--unit-m);
+    border-radius: var(--radius);
+}
+
 .flexbox {
     display: flex;
+}
+
+.flex {
+    flex: 1 0 auto;
 }
 
 .flexbox--row {
@@ -102,6 +142,7 @@ body {
 
 .list__item__note {
     padding: 0px var(--unit-m) var(--unit-m) var(--unit-m);
+    color: var(--note-color);
 }
 
 .tag {
@@ -129,10 +170,48 @@ a.btn {
     color: var(--primary);
 }
 
+.btn--secondary {
+    color: var(--color);
+}
+
 .btn:hover {
     background-color: var(--btn-hover);
 }
 
 .btn:active {
     transform: scale(0.92);
+}
+
+.form__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--unit-s) 0px;
+}
+
+.form__label {
+    width: 160px;
+}
+
+.form__input {
+    flex: 1 0 auto;
+}
+
+.alert {
+    padding: var(--unit-s) var(--unit-m);
+    border-radius: var(--radius);
+}
+
+.alert--success {
+    background-color: var(--success);
+}
+
+.alert--error {
+    background-color: var(--error);
+}
+
+@media (min-width: 960px) { 
+    .container {
+        max-width: 600px;
+    }
 }

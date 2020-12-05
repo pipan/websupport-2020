@@ -16,6 +16,6 @@ class ApplicationBootstrap extends Bootstrap
 
         $context->addGet('/', new ListController($config));
         $context->addGet('/create', new CreateController());
-        $context->addPost('/create', new CreateSubmitController());
+        $context->addPost('/create', new CreateSubmitController($config));
     }
 }

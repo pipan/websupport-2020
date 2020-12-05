@@ -2,6 +2,7 @@
 
 namespace Gasparik\App\Controller;
 
+use Gasparik\App\Flash;
 use Gasparik\App\Schema\DefaultListItemAdapter;
 use Gasparik\App\View\ListView;
 use Gasparik\Lib\Adapter\ListAdapter;
@@ -28,8 +29,9 @@ class ListController implements Controller
         $response = $websupportApi->getDnsList($this->config['websupport']['domain']);
 
         return (new ListView())->render([
-            'title' => 'DNS list',
-            'dns_records' => $this->recordAdapter->adapt($response['items'])
+            'title' => 'DNS | records',
+            'dns_records' => $this->recordAdapter->adapt($response['items']),
+            'flash' => Flash::getAll()
         ]);
     }
 }

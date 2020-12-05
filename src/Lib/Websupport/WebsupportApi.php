@@ -54,6 +54,8 @@ class WebsupportApi
 
         $request = $this->createAuthRequest('POST', $path)
             ->withJson($record);
-        return $this->client->send($request);
+
+        $resonse = $this->client->send($request);
+        return json_decode($resonse, true);
     }
 }

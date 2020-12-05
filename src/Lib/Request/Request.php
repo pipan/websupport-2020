@@ -20,7 +20,8 @@ class Request
     public static function fromClient()
     {
         $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
-        $url = new Url($protocol, $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
+        $path = strtok($_SERVER["REQUEST_URI"], '?');
+        $url = new Url($protocol, $_SERVER['HTTP_HOST'], $path);
         $inputs = $_POST + $_GET;
         return new Request($_SERVER['REQUEST_METHOD'], $url, $inputs, []);
     }

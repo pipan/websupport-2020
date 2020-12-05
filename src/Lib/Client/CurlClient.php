@@ -15,7 +15,9 @@ class CurlClient implements Client
             $curlHeaders[] = $key . ": " . $value;
         }
         \curl_setopt($ch, CURLOPT_HTTPHEADER, $curlHeaders);
-        // \curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getBody());
+        if ($request->getMethod() === 'POST') {
+            \curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getBody());
+        }
 
         $auth = $request->getAuth();
         if (!empty($auth)) {
