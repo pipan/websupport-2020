@@ -117,7 +117,7 @@ input:focus {
 }
 
 .align--right {
-    justify-content: right;
+    justify-content: flex-end;
 }
 
 .align--middle {
