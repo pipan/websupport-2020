@@ -2,6 +2,7 @@
 
 namespace Gasparik\App;
 
+use Gasparik\App\Form\AModel;
 use Gasparik\App\Form\DefaultModel;
 use Gasparik\App\Form\FormModel;
 use Gasparik\App\Form\MXModel;
@@ -14,7 +15,7 @@ class DnsFormFactory
     public function __construct()
     {
         $this->forms = [
-            'A' => new DefaultModel(),
+            'A' => new AModel(),
             'AAAA' => new DefaultModel(),
             'MX' => new MXModel(),
             'ANAME' => new DefaultModel(),

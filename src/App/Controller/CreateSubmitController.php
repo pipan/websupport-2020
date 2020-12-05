@@ -29,10 +29,14 @@ class CreateSubmitController implements Controller
         $requestData = $request->getInputList();
         $errors = $form->validate($requestData);
         if (!empty($errors)) {
-            Flash::error('Form is not valid');
+            $errorKey = array_key_first($errors);
+            Flash::error($errorKey . ": " .$errors[$errorKey]);
             return Response::redirect('/create?type=' . $type);
         }
 
+        if (isset($requestData['ttl']) && $requestData['ttl'] === '') {
+            unset($requestData['ttl']);
+        }
         $response = $this->websupportApi->createDnsRecord($this->domain, $requestData);
         if (!isset($response['status']) || $response['status'] !== 'success') {
             Flash::error('API does not accept data');
