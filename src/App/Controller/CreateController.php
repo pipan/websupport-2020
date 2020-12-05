@@ -7,6 +7,7 @@ use Gasparik\App\Flash;
 use Gasparik\App\View\CreateView;
 use Gasparik\Lib\Application\Controller;
 use Gasparik\Lib\Request\Request;
+use Gasparik\Lib\Response\Response;
 
 class CreateController implements Controller
 {
@@ -17,7 +18,7 @@ class CreateController implements Controller
         $this->formFactory = new DnsFormFactory();
     }
 
-    public function execute(Request $request)
+    public function execute(Request $request): Response
     {
         $type = $request->getInput('type', '');
         $model = $this->formFactory->createFromType($type);
@@ -28,11 +29,12 @@ class CreateController implements Controller
             $form[$value] = $request->getInput($value, ''); // this is a good place to fill in any default values or value after invalid form submit
         }
 
-        return (new CreateView())
+        $html = (new CreateView())
             ->render([
                 'title' => 'DNS | create',
                 'form' => $form,
                 'flash' => Flash::getAll()
             ]);
+        return Response::html($html);
     }
 }

@@ -6,6 +6,7 @@ use Gasparik\App\DnsFormFactory;
 use Gasparik\App\Flash;
 use Gasparik\Lib\Application\Controller;
 use Gasparik\Lib\Request\Request;
+use Gasparik\Lib\Response\Response;
 use Gasparik\Lib\Websupport\WebsupportApi;
 
 class CreateSubmitController implements Controller
@@ -21,27 +22,24 @@ class CreateSubmitController implements Controller
         $this->formFactory = new DnsFormFactory();
     }
 
-    public function execute(Request $request)
+    public function execute(Request $request): Response
     {
         $type = $request->getInput('type', '');
         $form = $this->formFactory->createFromType($type);
         $requestData = $request->getInputList();
         $errors = $form->validate($requestData);
         if (!empty($errors)) {
-            Flash::error('form is not valid');
-            header("location: /create");
-            die();
+            Flash::error('Form is not valid');
+            return Response::redirect('/create?type=' . $type);
         }
 
         $response = $this->websupportApi->createDnsRecord($this->domain, $requestData);
         if (!isset($response['status']) || $response['status'] !== 'success') {
             Flash::error('API does not accept data');
-            header("location: /create?type=" . $type);
-            die();
+            return Response::redirect('/create?type=' . $type);
         }
 
         Flash::success('Saved');
-        header("location: /");
-        die();
+        return Response::redirect('/');
     }
 }

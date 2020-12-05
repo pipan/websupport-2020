@@ -4,6 +4,7 @@ namespace Gasparik\Lib\Application;
 
 use Gasparik\Lib\Application\Context\ApplicationContext;
 use Gasparik\Lib\Request\Request;
+use Gasparik\Lib\Response\Response;
 
 class Application
 {
@@ -37,8 +38,13 @@ class Application
         return $controller->execute($request);
     }
 
-    public function handleResponse($response)
+    public function handleResponse(Response $response)
     {
-        echo $response;
+        $status = $response->getStatus();
+        if ($status >= 300 && $status < 400) {
+            header('Location: ' . $response->getContext('location'));
+            die();
+        }
+        echo $response->getContext('body');
     }
 }

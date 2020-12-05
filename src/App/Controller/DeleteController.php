@@ -5,6 +5,7 @@ namespace Gasparik\App\Controller;
 use Gasparik\App\Flash;
 use Gasparik\Lib\Application\Controller;
 use Gasparik\Lib\Request\Request;
+use Gasparik\Lib\Response\Response;
 use Gasparik\Lib\Websupport\WebsupportApi;
 
 class DeleteController implements Controller
@@ -18,17 +19,15 @@ class DeleteController implements Controller
         $this->websupportApi = new WebsupportApi($config['websupport']);
     }
 
-    public function execute(Request $request)
+    public function execute(Request $request): Response
     {
         $response = $this->websupportApi->deleteDnsRecord($this->domain, $request->getInput('id', 0));
         if (!isset($response['status']) || $response['status'] !== 'success') {
             Flash::error('API does not accept data');
-            header("location: /");
-            die();
+            return Response::redirect('/');
         }
 
         Flash::success('Deleted');
-        header("location: /");
-        die();
+        return Response::redirect('/');
     }
 }
