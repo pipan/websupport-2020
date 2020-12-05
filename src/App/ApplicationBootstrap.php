@@ -12,7 +12,9 @@ class ApplicationBootstrap extends Bootstrap
 {
     public function routes(RouterContext $context)
     {
-        $context->addGet('/', new ListController());
+        $config = require '../src/App/Config/env.php';
+
+        $context->addGet('/', new ListController($config));
         $context->addGet('/create', new CreateController());
         $context->addPost('/create', new CreateSubmitController());
     }

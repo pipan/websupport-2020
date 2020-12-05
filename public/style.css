@@ -1,0 +1,138 @@
+:root {
+    --bg-level-1: #303030;
+    --bg-level-2: #282828;
+    --color: #f4f4f4;
+    --primary: #1effbc;
+
+    --radius: 6px;
+    
+    --unit-s: 8px;
+    --unit-m: 16px;
+    --unit-l: 32px;
+
+    --tag-bg: #417257;
+    --btn-hover: rgba(255, 255, 255, 0.07);
+}
+
+html, body {
+    padding: 0px;
+    margin: 0px;
+    font-size: 1rem;
+}
+
+body {
+    background-color: var(--bg-level-1);
+    color: var(--color);
+    font-family: "Arial";
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.left-s {
+    margin-left: var(--unit-s);
+}
+
+.left-m {
+    margin-left: var(--unit-m);
+}
+
+.right-s {
+    margin-right: var(--unit-s);
+}
+
+.right-m {
+    margin-right: var(--unit-m);
+}
+
+.top-m {
+    margin-top: var(--unit-m);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexbox {
+    display: flex;
+}
+
+.flexbox--row {
+    flex-direction: row;
+}
+
+.flexbox--column {
+    flex-direction: column;
+}
+
+.align--center {
+    justify-content: center;
+}
+
+.align--right {
+    justify-content: right;
+}
+
+.align--middle {
+    align-items: center;
+}
+
+.list__item {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-level-2);
+    border-radius: var(--radius);
+    margin-top: var(--unit-s);
+}
+
+.list__item:first-of-type {
+    margin-top: 0px;
+}
+
+.list__item__title {
+    padding: var(--unit-m);
+}
+
+.list__item__name {
+    flex: 1 0 auto;
+}
+
+.list__item__note {
+    padding: 0px var(--unit-m) var(--unit-m) var(--unit-m);
+}
+
+.tag {
+    background-color: var(--tag-bg);
+    padding: 4px var(--unit-s);
+    border-radius: var(--radius);
+    opacity: 1;
+    font-size: 0.8em;
+}
+
+a.btn {
+    text-decoration: none;
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius);
+    background-color: transparent;
+    padding: var(--unit-s) var(--unit-m);
+    font-size: 1rem;
+}
+
+.btn--primary {
+    color: var(--primary);
+}
+
+.btn:hover {
+    background-color: var(--btn-hover);
+}
+
+.btn:active {
+    transform: scale(0.92);
+}
