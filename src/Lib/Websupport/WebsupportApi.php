@@ -58,4 +58,14 @@ class WebsupportApi
         $resonse = $this->client->send($request);
         return json_decode($resonse, true);
     }
+
+    public function deleteDnsRecord($domain, $recordId)
+    {
+        $path = '/v1/user/' . $this->config['user'] . '/zone/' . $domain . '/record/' . $recordId;
+
+        $request = $this->createAuthRequest('DELETE', $path);
+
+        $resonse = $this->client->send($request);
+        return json_decode($resonse, true);
+    }
 }

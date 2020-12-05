@@ -15,6 +15,7 @@ class DefaultListItemAdapter implements Adapter
     public function adapt($item)
     {
         return [
+            'id' => $item['id'],
             'type' => $item['type'],
             'name' => $item['name'] . "." . $this->domain,
             'note' => $item['content']

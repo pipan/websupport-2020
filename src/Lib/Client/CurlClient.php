@@ -9,6 +9,7 @@ class CurlClient implements Client
         $ch = \curl_init();
         \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         \curl_setopt($ch, CURLOPT_FAILONERROR, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request->getMethod());
         \curl_setopt($ch, CURLOPT_URL, $request->getUrl());
         $curlHeaders = [];
         foreach ($request->getHeaders() as $key => $value) {
@@ -29,11 +30,10 @@ class CurlClient implements Client
 
         $response = \curl_exec($ch);
         if (curl_errno($ch)) {
-            echo curl_error($ch);
+            throw new CurlException(curl_error($ch));
         }
 
         \curl_close($ch); 
-
         return $response;
     }
 }

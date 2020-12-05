@@ -1,7 +1,7 @@
 <div class="container">
     <div class="flexbox flexbox--row align--middle">
         <h2 class="flex">DNS Records</h2>
-        <a href="/create" class="btn btn--primary left-m">CREATE</a>
+        <a href="/createselect" class="btn btn--primary left-m">CREATE</a>
     </div>
     <?php foreach ($data['flash'] as $alert): ?>
         <div class="top-s alert alert--<?= $alert['type'] ?>">
@@ -17,7 +17,13 @@
                 </div>
                 <?php if (isset($item['note']) && $item['note'] !== ""): ?>
                     <div class="list__item__note">
-                        <?= $item['note'] ?>
+                        <div class="flex">
+                            <?= $item['note'] ?>
+                        </div>
+                        <form method="POST" action="/delete" onsubmit="return confirm('You are about to remove DNS record. Are you sure?')">
+                            <input type="hidden" name="id" value="<?= $item['id'] ?>" />
+                            <button type="submit" class="btn btn--secondary">DELETE</button>
+                        </form>
                     </div>
                 <?php endif; ?>
             </div>

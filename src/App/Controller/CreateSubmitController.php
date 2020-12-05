@@ -39,7 +39,6 @@ class CreateSubmitController implements Controller
             header("location: /create?type=" . $type);
             die();
         }
-        var_dump($response);
 
         Flash::success('Saved');
         header("location: /");
