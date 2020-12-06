@@ -4,7 +4,7 @@ namespace Gasparik\App\Controller;
 
 use Gasparik\App\DnsFormFactory;
 use Gasparik\App\Flash;
-use Gasparik\App\View\CreateView;
+use Gasparik\App\View\Layout;
 use Gasparik\Lib\Application\Controller;
 use Gasparik\Lib\Request\Request;
 use Gasparik\Lib\Response\Response;
@@ -26,10 +26,11 @@ class CreateController implements Controller
         $formSchema = $model->getSchema();
         $form = [];
         foreach ($formSchema as $value) {
-            $form[$value] = $request->getInput($value, ''); // this is a good place to fill in any default values or value after invalid form submit
+            // todo: set value for a form if there is some in session for this field (for example in case of validation error)
+            $form[$value] = $request->getInput($value, '');
         }
 
-        $html = (new CreateView())
+        $html = Layout::withBodyFile('create.php')
             ->render([
                 'title' => 'DNS | create',
                 'form' => $form,

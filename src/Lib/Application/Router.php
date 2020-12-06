@@ -18,6 +18,7 @@ class Router
     {
         $requestPath = $request->getUrl()->getPath();
         $requestMethod = $request->getMethod();
+        // todo: add route parameters matching 
         foreach ($this->routes as $path => $route) {
             if (!$this->isMatch($requestPath, $path)) {
                 continue;

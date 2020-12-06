@@ -10,19 +10,19 @@ use Gasparik\Lib\Websupport\WebsupportApi;
 
 class DeleteController implements Controller
 {
-    private $domain;
     private $websupportApi;
 
-    public function __construct($config)
+    public function __construct(WebsupportApi $websupportApi)
     {
-        $this->domain = $config['websupport']['domain'];
-        $this->websupportApi = new WebsupportApi($config['websupport']);
+        $this->websupportApi = $websupportApi;
     }
 
     public function execute(Request $request): Response
     {
-        $response = $this->websupportApi->deleteDnsRecord($this->domain, $request->getInput('id', 0));
+        $response = $this->websupportApi->deleteDnsRecord($request->getInput('id', 0));
         if (!isset($response['status']) || $response['status'] !== 'success') {
+            // todo: improve error message. Use response error message if it provides some additional information for user
+            // todo: add logging
             Flash::error('API does not accept data');
             return Response::redirect('/');
         }

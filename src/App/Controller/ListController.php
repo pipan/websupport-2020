@@ -4,7 +4,7 @@ namespace Gasparik\App\Controller;
 
 use Gasparik\App\Flash;
 use Gasparik\App\Schema\DefaultListItemAdapter;
-use Gasparik\App\View\ListView;
+use Gasparik\App\View\Layout;
 use Gasparik\Lib\Adapter\ListAdapter;
 use Gasparik\Lib\Application\Controller;
 use Gasparik\Lib\Request\Request;
@@ -13,27 +13,28 @@ use Gasparik\Lib\Websupport\WebsupportApi;
 
 class ListController implements Controller
 {
-    private $config;
     private $recordAdapter;
+    private $websupportApi;
 
-    public function __construct($config)
+    public function __construct(WebsupportApi $websupportApi, $domain)
     {
-        $this->config = $config;    
+        $this->websupportApi = $websupportApi;
         $this->recordAdapter = new ListAdapter(
-            new DefaultListItemAdapter($this->config['websupport']['domain'])
+            new DefaultListItemAdapter($domain)
         );
     }
 
     public function execute(Request $request): Response
     {
-        $websupportApi = new WebsupportApi($this->config['websupport']);
-        $response = $websupportApi->getDnsList($this->config['websupport']['domain']);
+        
+        $response = $this->websupportApi->getDnsList();
 
-        $html = (new ListView())->render([
-            'title' => 'DNS | records',
-            'dns_records' => $this->recordAdapter->adapt($response['items']),
-            'flash' => Flash::getAll()
-        ]);
+        $html = Layout::withBodyFile('list.php')
+            ->render([
+                'title' => 'DNS | records',
+                'dns_records' => $this->recordAdapter->adapt($response['items']),
+                'flash' => Flash::getAll()
+            ]);
         return Response::html($html);
     }
 }

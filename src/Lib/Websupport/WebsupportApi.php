@@ -38,9 +38,9 @@ class WebsupportApi
             ->withBasicAuth($this->config['key'], $signature);
     }
 
-    public function getDnsList($domain)
+    public function getDnsList()
     {
-        $path = '/v1/user/' . $this->config['user'] . '/zone/' . $domain . '/record';
+        $path = '/v1/user/' . $this->config['user'] . '/zone/' . $this->config['domain'] . '/record';
 
         $request = $this->createAuthRequest('GET', $path);
 
@@ -48,9 +48,9 @@ class WebsupportApi
         return json_decode($resonse, true);
     }
 
-    public function createDnsRecord($domain, $record)
+    public function createDnsRecord($record)
     {
-        $path = '/v1/user/' . $this->config['user'] . '/zone/' . $domain . '/record';
+        $path = '/v1/user/' . $this->config['user'] . '/zone/' . $this->config['domain'] . '/record';
 
         $request = $this->createAuthRequest('POST', $path)
             ->withJson($record);
@@ -59,9 +59,9 @@ class WebsupportApi
         return json_decode($resonse, true);
     }
 
-    public function deleteDnsRecord($domain, $recordId)
+    public function deleteDnsRecord($recordId)
     {
-        $path = '/v1/user/' . $this->config['user'] . '/zone/' . $domain . '/record/' . $recordId;
+        $path = '/v1/user/' . $this->config['user'] . '/zone/' . $this->config['domain'] . '/record/' . $recordId;
 
         $request = $this->createAuthRequest('DELETE', $path);
 

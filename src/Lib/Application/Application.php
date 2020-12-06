@@ -47,4 +47,6 @@ class Application
         }
         echo $response->getContext('body');
     }
+
+    // todo: add handeException method to handle exceptions during handleRequest method
 }
