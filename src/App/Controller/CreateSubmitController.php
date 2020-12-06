@@ -29,6 +29,7 @@ class CreateSubmitController implements Controller
         if (!empty($errors)) {
             // todo: store form values in session and then prefill user form with those values
             // todo: store errors in session and show error under corresponding field input
+            // alternative: I could prefill values and show errors if I return HTML response and not redirect. So Why do I redirect? well I think that this controller should only try to save record. Showing and setting up create view is another responsibility for another controller.
             $errorKey = array_key_first($errors);
             Flash::error($errorKey . ": " .$errors[$errorKey]);
             return Response::redirect('/create?type=' . $type);
