@@ -2,6 +2,7 @@
 
 namespace Gasparik\App\Form;
 
+use Gasparik\Lib\Validation\CsrfRule;
 use Gasparik\Lib\Validation\RequiredRule;
 use Gasparik\Lib\Validation\Validation;
 

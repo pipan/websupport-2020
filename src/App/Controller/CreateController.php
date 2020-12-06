@@ -2,6 +2,7 @@
 
 namespace Gasparik\App\Controller;
 
+use Gasparik\App\Csrf;
 use Gasparik\App\DnsFormFactory;
 use Gasparik\App\Flash;
 use Gasparik\App\View\Layout;
@@ -34,7 +35,8 @@ class CreateController implements Controller
             ->render([
                 'title' => 'DNS | create',
                 'form' => $form,
-                'flash' => Flash::getAll()
+                'flash' => Flash::getAll(),
+                'csrf_token' => Csrf::generate()
             ]);
         return Response::html($html);
     }

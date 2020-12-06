@@ -28,7 +28,7 @@ class CreateSubmitController implements Controller
         $errors = $form->validate($requestData);
         if (!empty($errors)) {
             // todo: store form values in session and then prefill user form with those values
-            // todo: store errors in session and show error under coresponding field input
+            // todo: store errors in session and show error under corresponding field input
             $errorKey = array_key_first($errors);
             Flash::error($errorKey . ": " .$errors[$errorKey]);
             return Response::redirect('/create?type=' . $type);

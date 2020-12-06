@@ -9,6 +9,7 @@
     <?php endforeach; ?>
     <div class="card top-m">
         <form method="POST">
+            <input type="hidden" name="csrf" value="<?= $data['csrf_token'] ?>" />
             <div class="form__item">
                 <div class="form__label">Type</div>
                 <div class="form__input">

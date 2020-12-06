@@ -2,6 +2,7 @@
 
 namespace Gasparik\App\Schema;
 
+use Gasparik\App\Csrf;
 use Gasparik\Lib\Adapter\Adapter;
 
 class DefaultListItemAdapter implements Adapter
@@ -18,7 +19,8 @@ class DefaultListItemAdapter implements Adapter
             'id' => $item['id'],
             'type' => $item['type'],
             'name' => $item['name'] . "." . $this->domain,
-            'note' => $item['content']
+            'note' => $item['content'],
+            'csrf_token' => Csrf::generate()
         ];
     }
 }

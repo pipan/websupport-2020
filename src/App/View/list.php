@@ -21,6 +21,7 @@
                             <?= $item['note'] ?>
                         </div>
                         <form method="POST" action="/delete" onsubmit="return confirm('You are about to remove DNS record. Are you sure?')">
+                            <input type="hidden" name="csrf" value="<?= $item['csrf_token'] ?>" />
                             <input type="hidden" name="id" value="<?= $item['id'] ?>" />
                             <button type="submit" class="btn btn--secondary">DELETE</button>
                         </form>
