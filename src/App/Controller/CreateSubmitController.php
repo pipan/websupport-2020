@@ -41,7 +41,7 @@ class CreateSubmitController implements Controller
         if (!isset($response['status']) || $response['status'] !== 'success') {
             // todo: improve error message. Use response error message if it provides some additional information for user
             // todo: add logging
-            Flash::error('API does not accept data');
+            Flash::error('Request refused by websupport API');
             return Response::redirect('/create?type=' . $type);
         }
 
