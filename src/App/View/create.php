@@ -4,7 +4,7 @@
     </div>
     <?php foreach ($data['flash'] as $alert): ?>
         <div class="top-s alert alert--<?= $alert['type'] ?>">
-            <?= $alert['message'] ?>
+            <?= htmlspecialchars($alert['message']) ?>
         </div>
     <?php endforeach; ?>
     <div class="card top-m">
